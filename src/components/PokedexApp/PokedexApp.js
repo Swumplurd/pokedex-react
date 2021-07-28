@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { AddPokemon } from "../AddPokemon/AddPokemon";
+import { PokedexGrid } from "../PokemonGrid/PokemonGrid";
 
 export const PokedexApp = () => {
-    const [pokemons, setPokemons] = useState(['Hola']);
+    const [pokemons, setPokemons] = useState([]);
 
     return (
         <>
@@ -26,11 +27,11 @@ export const PokedexApp = () => {
 
                 <div className="row">
                     <div className="col-12">
-                        <ol>
+                        <ol className="p-0 m-0">
                             {
                                 pokemons.map((pokemon) => {
                                     return (
-                                        <li key={pokemon}>{pokemon}</li>
+                                        <PokedexGrid key={pokemon} name={pokemon} />
                                     )
                                 })
                             }
