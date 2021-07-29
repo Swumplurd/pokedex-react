@@ -1,59 +1,20 @@
-export const PokedexGrid = ({name}) => {
+import { useFetchPokemons } from "../../hooks/useFetchPokemons";
+import { PokemonGridItem } from "../PokemonGridItem/PokemonGridItem";
+
+export const PokemonGrid = ({name}) => {
+
+    const {data:pokemons, loading} = useFetchPokemons(name);
+
     return (
         <>
-            <h4>{name}</h4>
-            <div className="row row-cols-1 row-cols-md-4 g-4">
-                <div className="col">
-                    <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div className="card-footer">
-                            <small className="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
+            {loading && <p className="text-center animate__heartBeat">Cargando...</p>}
+                <div className="card h-100 shadow-lg">
+                    {
+                        pokemons.map(poke => {
+                            return <PokemonGridItem key={poke.id} {...poke} />
+                        })
+                    }
                 </div>
-                <div className="col">
-                    <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div className="card-footer">
-                            <small className="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div className="col">
-                    <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        <div className="card-footer">
-                            <small className="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div className="col">
-                    <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
-                            </p>
-                        </div>
-                        <div className="card-footer">
-                            <small className="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </>
-    );
-};
+    )
+}
