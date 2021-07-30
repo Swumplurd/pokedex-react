@@ -8,6 +8,5 @@ export const getPokemons = async(pokemon) => {
         name: pokedex.name,
         front_default: pokedex.sprites.front_default,
         front_shiny: pokedex.sprites.front_shiny,
-        dream_world: pokedex.sprites.other.dream_world.front_default,
     }]
 }

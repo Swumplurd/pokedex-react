@@ -3,20 +3,15 @@ import {getPokemons} from '../helpers/getPokemons';
 
 export const useFetchPokemons = (pokemon) => {
      const [state, setState] = useState({
-         data: [],
-         loading: true
+         data: []
      });
 
     useEffect(() => {
         getPokemons(pokemon)
             .then((pokes) => setState({
-                data: pokes,
-                loading: false
-            }))
-            .catch((pokes) => setState({
-                data: pokes,
-                loading: false
-            }))
+                data: pokes
+            })
+        )
     }, [pokemon]);
 
     return state
