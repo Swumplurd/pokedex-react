@@ -1,18 +1,22 @@
-import { useState, useEffect } from 'react';
-import {getPokemons} from '../helpers/getPokemons';
+import { useState, useEffect } from "react";
+import { getPokemons } from "../helpers/getPokemons";
 
 export const useFetchPokemons = (pokemon) => {
-     const [state, setState] = useState({
-         data: []
-     });
+    const [state, setState] = useState({
+        data: [],
+        loading: true,
+    });
 
     useEffect(() => {
-        getPokemons(pokemon)
-            .then((pokes) => setState({
-                data: pokes
-            })
-        )
+        setTimeout(() => {
+            getPokemons(pokemon).then((pokes) =>
+                setState({
+                    data: pokes,
+                    loading: false,
+                })
+            );
+        }, 500);
     }, [pokemon]);
 
-    return state
-}
+    return state;
+};
