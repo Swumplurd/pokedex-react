@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { getAllPokemons } from "../../helpers/getAllPokemons";
 import Swal from 'sweetalert2'
 
 export const AddPokemon = ({ setPokemons }) => {
     const [inputValue, setInputValue] = useState("");
+
+    const allPokes = getAllPokemons().map((poke) => {
+        return poke.toLowerCase()
+    });
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -10,7 +15,7 @@ export const AddPokemon = ({ setPokemons }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (inputValue > 0 && inputValue < 899) {
+        if ((inputValue > 0 && inputValue < 899) || allPokes.includes(inputValue)) {
             setPokemons((pokemons) => {
                 if (pokemons.includes(inputValue)) {
                     Swal.fire({
@@ -38,11 +43,11 @@ export const AddPokemon = ({ setPokemons }) => {
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label forhtml="buscarPokemon" className="form-label">
-                    Id del Pokemon
+                    Id/Nombre del Pokemon
                 </label>
-                <input type="text" onChange={handleInputChange} value={inputValue} className="form-control shadow-lg" id="buscarPokemon" aria-describedby="buscarPokemonHelp" />
+                <input type="text" onChange={handleInputChange} value={inputValue.toLowerCase()} className="form-control shadow-lg" id="buscarPokemon" aria-describedby="buscarPokemonHelp" />
                 <div id="buscarPokemonHelp" className="form-text">
-                    Ingresa el Id del Pokemon (1 - 898)...
+                    Ingresa el Nombre del Pokemon o el Id del Pokemon (1 - 898)...
                 </div>
             </div>
         </form>

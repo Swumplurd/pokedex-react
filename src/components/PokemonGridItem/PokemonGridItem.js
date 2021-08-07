@@ -17,7 +17,7 @@ export const PokemonGridItem = ({ id, name, front_default, front_shiny }) => {
             <div className="card-body d-grid">
                 <h5 className="card-title text-center text-uppercase">{id + " - " + name}</h5>
             </div>
-            <div class="card-footer">
+            <div className="card-footer">
                 <div className="form-check form-switch">
                     <input className="form-check-input" type="checkbox" id={name} onChange={handleShiny} />
                     <label className="form-check-label" htmlFor={name}>

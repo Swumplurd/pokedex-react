@@ -18,5 +18,7 @@ export const useFetchPokemons = (pokemon) => {
         }, 500);
     }, [pokemon]);
 
+    console.log(state)
+
     return state;
 };
